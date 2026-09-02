@@ -1,0 +1,56 @@
+# profile.yml — the single source of truth for the resume.
+# Facts go in raw and unpolished. The skill turns facts into bullets; it may
+# never turn nothing into a bullet. Every number here should be one you can
+# defend in an interview.
+
+basics:
+  name: Ada Lovelace
+  headline: Backend engineer, payments and data           # not a slogan
+  location: Bangalore, India                              # city + country only
+  email: ada@example.com
+  phone: "+91 00000 00000"                                # optional
+  links:
+    github: https://github.com/example
+    linkedin: https://linkedin.com/in/example
+    site: https://example.dev
+
+experience:
+  - org: Example Payments
+    title: Backend Engineer                               # the real title
+    location: Remote
+    start: 2025-04
+    end: present                                          # or YYYY-MM
+    facts:
+      - built the settlement reconciliation job that closes the daily ledger
+      - cut nightly batch from 40 min to 9 min by batching the writes
+      - on call rotation, 1 week in 4
+    evidence:                                             # optional receipts
+      - https://github.com/example/ledger/pull/312
+
+education:
+  - institution: Example Institute of Technology
+    credential: B.Tech, Computer Science
+    start: 2025-08
+    end: 2029-05
+    facts:
+      - coursework in operating systems, DBMS, algorithms
+
+projects:
+  - name: railpull
+    what: Indian Railways timetable turned into an open dataset
+    stack: [Python, WebGL2, OSM]
+    facts:
+      - 9298 trains parsed from published timetables
+      - 612000 node routing graph built from OSM extracts
+    links:
+      - https://github.com/example/railpull
+
+skills:
+  languages: [Python, TypeScript, Rust]
+  frameworks: [FastAPI, Next.js]
+  tools: [Postgres, Docker, GitHub Actions]
+
+awards:
+  - what: Merged upstream fix in the DAMX kernel module
+    when: 2026-07
+    evidence: https://github.com/example/damx/pull/220

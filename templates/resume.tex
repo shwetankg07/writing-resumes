@@ -1,0 +1,54 @@
+% Default template. Packages: geometry, enumitem, hyperref, fontenc/inputenc.
+% All ship with texlive-basic + texlive-latexrecommended. Nothing exotic.
+% Engines, in order of preference: tectonic > xelatex > pdflatex.
+% ATS: single column, no tabular layout, dates in the text flow, real text layer.
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=0.6in]{geometry}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+\newcommand{\resumesection}[1]{%
+  \vspace{7pt}{\large\bfseries\MakeUppercase{#1}}\par
+  \vspace{-4pt}\rule{\linewidth}{0.6pt}\par\vspace{3pt}}
+
+% {organisation}{title}{location}{dates}
+\newcommand{\entry}[4]{%
+  \textbf{#1}\hfill #4\par
+  \textit{#2}\hfill #3\par\vspace{2pt}}
+
+\newenvironment{bullets}
+  {\begin{itemize}[leftmargin=1.1em,itemsep=1pt,topsep=1pt,parsep=0pt]}
+  {\end{itemize}}
+
+\begin{document}
+
+{\LARGE\bfseries Your Name}\par\vspace{2pt}
+City, Country \textbullet{} \href{mailto:you@example.com}{you@example.com}
+\textbullet{} \href{https://github.com/you}{github.com/you}
+\textbullet{} \href{https://you.dev}{you.dev}\par
+
+\resumesection{Experience}
+\entry{Organisation}{Job Title}{Location}{Mon YYYY -- Present}
+\begin{bullets}
+  \item One bullet, one line, every claim traceable to profile.yml.
+\end{bullets}
+
+\resumesection{Projects}
+\entry{Project Name}{What it is in five words}{}{YYYY}
+\begin{bullets}
+  \item What it does and the one fact that makes it worth reading.
+\end{bullets}
+
+\resumesection{Skills}
+\textbf{Languages:} A, B, C\par
+\textbf{Frameworks:} D, E\par
+\textbf{Tools:} F, G\par
+
+\resumesection{Education}
+\entry{Institution}{Credential}{Location}{YYYY -- YYYY}
+
+\end{document}

@@ -1,0 +1,55 @@
+<!doctype html>
+<!-- Single file, no assets. Render: chromium --headless --print-to-pdf=out.pdf resume.html
+     ATS: single column, semantic headings, dates in the text flow, real text layer. -->
+<meta charset="utf-8">
+<title>Your Name — Resume</title>
+<style>
+  @page { size: A4; margin: 14mm; }
+  * { box-sizing: border-box; }
+  body { font: 10.5pt/1.4 -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+         color: #111; margin: 0; max-width: 190mm; }
+  h1 { font-size: 20pt; margin: 0 0 2px; letter-spacing: -0.01em; }
+  .contact { font-size: 9.5pt; color: #333; margin-bottom: 4px; }
+  .contact a { color: inherit; }
+  h2 { font-size: 11pt; text-transform: uppercase; letter-spacing: 0.06em;
+       margin: 14px 0 2px; padding-bottom: 2px; border-bottom: 1px solid #111; }
+  .entry { margin-top: 7px; }
+  .row { display: flex; justify-content: space-between; gap: 12px; }
+  .org { font-weight: 700; }
+  .title { font-style: italic; }
+  .when, .where { white-space: nowrap; color: #333; }
+  ul { margin: 3px 0 0; padding-left: 16px; }
+  li { margin: 1px 0; }
+  p { margin: 2px 0; }
+  @media print { a { text-decoration: none; } }
+</style>
+
+<h1>Your Name</h1>
+<p class="contact">City, Country &bull; <a href="mailto:you@example.com">you@example.com</a>
+  &bull; <a href="https://github.com/you">github.com/you</a>
+  &bull; <a href="https://you.dev">you.dev</a></p>
+
+<h2>Experience</h2>
+<div class="entry">
+  <div class="row"><span class="org">Organisation</span><span class="when">Mon YYYY – Present</span></div>
+  <div class="row"><span class="title">Job Title</span><span class="where">Location</span></div>
+  <ul><li>One bullet, one line, every claim traceable to profile.yml.</li></ul>
+</div>
+
+<h2>Projects</h2>
+<div class="entry">
+  <div class="row"><span class="org">Project Name</span><span class="when">YYYY</span></div>
+  <div class="row"><span class="title">What it is in five words</span></div>
+  <ul><li>What it does and the one fact that makes it worth reading.</li></ul>
+</div>
+
+<h2>Skills</h2>
+<p><strong>Languages:</strong> A, B, C</p>
+<p><strong>Frameworks:</strong> D, E</p>
+<p><strong>Tools:</strong> F, G</p>
+
+<h2>Education</h2>
+<div class="entry">
+  <div class="row"><span class="org">Institution</span><span class="when">YYYY – YYYY</span></div>
+  <div class="row"><span class="title">Credential</span><span class="where">Location</span></div>
+</div>
