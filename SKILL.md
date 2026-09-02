@@ -38,11 +38,19 @@ Tailoring **selects and reorders** existing facts. It never adds one.
 
 1. **Ask two questions**, both in one message:
    - Facts source — existing `profile.yml` · interview · pull from GitHub/site
+     · agent memory (see below)
    - Output — **LaTeX (default)** · HTML→PDF · Markdown
-2. **Build `profile.yml`.** All three sources write the same file; interview and
-   auto-pull are populators, not separate paths. Schema:
-   `references/profile.example.yml`. Auto-pull records only what the repos and
-   site actually prove — everything else becomes `[ASK:]`.
+2. **Build `profile.yml`.** Every source writes this one file; they are
+   populators, not separate paths. Schema: `references/profile.example.yml`.
+   Auto-pull records only what the repos and site actually prove — everything
+   else becomes `[ASK:]`.
+
+   **Memory proposes, the person disposes.** If the runtime has memory about
+   this person, read it — then show every candidate fact back as a checklist
+   and write only what they confirm. Memory stores assertions, not evidence:
+   it cannot tell "shipped it" from "planned it", and it goes stale. Never
+   write a memory-derived fact into the profile unconfirmed, however obviously
+   true it looks. Details: `references/memory-as-a-source.md`.
 3. **Ask for the target job description** (optional). With one, select and order
    facts against it. Without one, write the general version.
 4. **Write the content.** Read `references/writing-rules.md` first — before the

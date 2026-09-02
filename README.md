@@ -21,9 +21,11 @@ Copilot CLI).
 
 Ask your agent for a resume. It will ask you two things:
 
-1. **Where the facts come from** — an existing `profile.yml`, an interview, or
-   pulled from your GitHub and site. All three write the same `profile.yml`, so
-   you end up with a reusable file either way.
+1. **Where the facts come from** — an existing `profile.yml`, an interview,
+   pulled from your GitHub and site, or your agent's own memory of you. They
+   all write the same `profile.yml`, so you end up with a reusable file either
+   way. Anything drawn from memory is shown to you for confirmation before it
+   is written — memory stores assertions, not evidence.
 2. **What to render** — LaTeX (default), HTML→PDF, or Markdown.
 
 Paste a job description and it tailors — by *selecting and reordering* what is
