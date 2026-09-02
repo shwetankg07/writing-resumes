@@ -7,8 +7,8 @@ Flags every number in the draft that is absent from profile.yml, plus any
 [ASK:] marker left in. Exit 1 if anything is flagged.
 
 Known ceiling: this proves a number EXISTS in the profile, not that it is used
-in the right place - "40 min" in the profile will clear "40%" in the draft. It
-catches invented magnitudes, which is the common failure; it does not catch a
+in the right place. "40 min" in the profile will clear "40%" in the draft. It
+catches invented magnitudes, which is the common failure. It does not catch a
 real number moved to the wrong claim.
 
 # ponytail: numeric claims + markers only. Prose claims ("led the team") need a

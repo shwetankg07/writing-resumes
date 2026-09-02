@@ -1,7 +1,7 @@
-# profile.yml — the single source of truth for the resume.
-# Facts go in raw and unpolished. The skill turns facts into bullets; it may
-# never turn nothing into a bullet. Every number here should be one you can
-# defend in an interview.
+# profile.yml, the single source of truth for the resume.
+# Facts go in raw and unpolished. The skill turns these facts into bullets; it
+# cannot write a bullet with no fact behind it. Every number here should be one
+# you can defend in an interview.
 
 basics:
   name: Ada Lovelace
