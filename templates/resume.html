@@ -14,10 +14,13 @@
   h2 { font-size: 11pt; text-transform: uppercase; letter-spacing: 0.06em;
        margin: 14px 0 2px; padding-bottom: 2px; border-bottom: 1px solid #111; }
   .entry { margin-top: 7px; }
-  .row { display: flex; justify-content: space-between; gap: 12px; }
+  /* One inline line per entry. Right-aligned dates look better but break the
+     PDF text layer: any wide horizontal gap makes extractors emit the date as
+     a separate block, detached from the role. Measured, not assumed. */
+  .line { margin: 0; }
   .org { font-weight: 700; }
   .title { font-style: italic; }
-  .when, .where { white-space: nowrap; color: #333; }
+  .when { color: #333; }
   ul { margin: 3px 0 0; padding-left: 16px; }
   li { margin: 1px 0; }
   p { margin: 2px 0; }
@@ -31,15 +34,13 @@
 
 <h2>Experience</h2>
 <div class="entry">
-  <div class="row"><span class="org">Organisation</span><span class="when">Mon YYYY – Present</span></div>
-  <div class="row"><span class="title">Job Title</span><span class="where">Location</span></div>
+  <p class="line"><span class="org">Organisation</span> &bull; <span class="title">Job Title</span> &bull; Location &bull; <span class="when">Mon YYYY – Present</span></p>
   <ul><li>One bullet, one line, every claim traceable to profile.yml.</li></ul>
 </div>
 
 <h2>Projects</h2>
 <div class="entry">
-  <div class="row"><span class="org">Project Name</span><span class="when">YYYY</span></div>
-  <div class="row"><span class="title">What it is in five words</span></div>
+  <p class="line"><span class="org">Project Name</span> &bull; <span class="title">What it is in five words</span> &bull; <span class="when">YYYY</span></p>
   <ul><li>What it does and the one fact that makes it worth reading.</li></ul>
 </div>
 
@@ -50,6 +51,5 @@
 
 <h2>Education</h2>
 <div class="entry">
-  <div class="row"><span class="org">Institution</span><span class="when">YYYY – YYYY</span></div>
-  <div class="row"><span class="title">Credential</span><span class="where">Location</span></div>
+  <p class="line"><span class="org">Institution</span> &bull; <span class="title">Credential</span> &bull; Location &bull; <span class="when">YYYY – YYYY</span></p>
 </div>

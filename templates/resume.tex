@@ -16,9 +16,12 @@
   \vspace{-4pt}\rule{\linewidth}{0.6pt}\par\vspace{3pt}}
 
 % {organisation}{title}{location}{dates}
+% One text flow per entry. \hfill-separated dates read well on the page but a
+% wide horizontal gap makes PDF text extractors split the date into its own
+% block, detached from the role, which is what an ATS parses. Keep it inline.
 \newcommand{\entry}[4]{%
-  \textbf{#1}\hfill #4\par
-  \textit{#2}\hfill #3\par\vspace{2pt}}
+  \textbf{#1} \textbullet{} \textit{#2} \textbullet{} #3 \textbullet{} #4\par
+  \vspace{2pt}}
 
 \newenvironment{bullets}
   {\begin{itemize}[leftmargin=1.1em,itemsep=1pt,topsep=1pt,parsep=0pt]}
@@ -32,7 +35,7 @@ City, Country \textbullet{} \href{mailto:you@example.com}{you@example.com}
 \textbullet{} \href{https://you.dev}{you.dev}\par
 
 \resumesection{Experience}
-\entry{Organisation}{Job Title}{Location}{Mon YYYY -- Present}
+\entry{Organisation}{Job Title}{Location}{Mon YYYY--Present}
 \begin{bullets}
   \item One bullet, one line, every claim traceable to profile.yml.
 \end{bullets}
