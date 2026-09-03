@@ -63,10 +63,21 @@ def numbers(text):
     return {norm(m) for m in NUM.findall(URL.sub(" ", text))}
 
 
+ITEM_BRACKET = re.compile(r"\\item\s*\[")
+
+
 def check(draft_path, profile_path):
     text = visible_text(draft_path)
     known = numbers(open(profile_path, encoding="utf-8").read())
     problems = []
+
+    if draft_path.endswith((".tex", ".latex")):
+        raw = open(draft_path, encoding="utf-8").read()
+        for n, line in enumerate(raw.splitlines(), 1):
+            if ITEM_BRACKET.search(line):
+                problems.append((n, r"\item [ ... ] is read as the optional label: "
+                                    r"this marker vanishes from the PDF. Write \item {}[",
+                                 line.strip()))
 
     for n, line in enumerate(text.splitlines(), 1):
         for tok in NUM.findall(URL.sub(" ", line)):
@@ -109,6 +120,11 @@ def self_test():
     )
     got = check(html, prof)
     assert len(got) == 1 and "ASK" in got[0][1], got  # css ignored, marker caught
+
+    # \item [ swallows the marker before it reaches the PDF
+    eaten = os.path.join(d, "e.tex")
+    open(eaten, "w").write("\\begin{document}\n\\item [ASK: how many?]\n")
+    assert any("optional label" in w for _, w, _ in check(eaten, prof)), check(eaten, prof)
     print("self-test ok")
 
 

@@ -19,8 +19,12 @@
 % One text flow per entry. \hfill-separated dates read well on the page but a
 % wide horizontal gap makes PDF text extractors split the date into its own
 % block, detached from the role, which is what an ATS parses. Keep it inline.
+\makeatletter
+\newcommand{\resumefield}[1]{\def\rs@tmp{#1}\ifx\rs@tmp\@empty\else
+  \ \textbullet{}\ #1\fi}
+\makeatother
 \newcommand{\entry}[4]{%
-  \textbf{#1} \textbullet{} \textit{#2} \textbullet{} #3 \textbullet{} #4\par
+  \textbf{#1}\resumefield{\textit{#2}}\resumefield{#3}\resumefield{#4}\par
   \vspace{2pt}}
 
 \newenvironment{bullets}

@@ -50,6 +50,9 @@ The resume is read by a parser before a human sees it. Non-negotiable:
   installed.
 - Nothing load-bearing in a header or footer; some parsers drop them.
 - Standard fonts. Contact details as plain text, not glyphs.
+- Wrap a hyphenated domain in `\mbox{}` (LaTeX) or `white-space: nowrap`
+  (HTML). If it breaks across lines, extractors drop the hyphen and
+  `you.is-a.dev` becomes the dead domain `you.isa.dev`.
 
 ## Leave out
 
@@ -60,7 +63,10 @@ switching fields), and anything invented to fill space.
 
 ## Gaps
 
-For a missing fact, write `[ASK: <specific question>]` into the draft. Be
+For a missing fact, write `[ASK: <specific question>]` into the draft. In
+LaTeX write `\item {}[ASK: ...]`; a bare `\item [` is read as the optional
+label and the marker disappears from the rendered PDF while still passing a
+check of the source. `check_facts.py` flags this. Be
 specific: `[ASK: metrics?]` gets nothing back, while `[ASK: how many users hit
 the beta in month one?]` gets an answer. Collect every marker and ask them
 together at the end, in one message.
