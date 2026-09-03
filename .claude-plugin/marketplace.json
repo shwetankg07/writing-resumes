@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace-manifest.json",
+  "name": "writing-resumes",
+  "owner": {
+    "name": "shwetankg07",
+    "url": "https://github.com/shwetankg07"
+  },
+  "description": "Install writing-resumes as a Claude Code plugin.",
+  "plugins": [
+    {
+      "name": "writing-resumes",
+      "source": "./",
+      "description": "Write resumes that contain no invented facts. Every claim traces to a profile file, and a checker fails the draft when one doesn't.",
+      "license": "MIT",
+      "category": "productivity",
+      "keywords": ["resume", "cv", "ats", "job-search", "writing"]
+    }
+  ]
+}

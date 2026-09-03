@@ -10,12 +10,19 @@ the draft when one doesn't.
 
 ## Install
 
+As a skill, in any agent that reads `SKILL.md` (Claude Code, Codex, Gemini CLI,
+Copilot CLI):
+
 ```bash
 npx skills add shwetankg07/writing-resumes
 ```
 
-Works with any agent that reads `SKILL.md`: Claude Code, Codex, Gemini CLI,
-Copilot CLI.
+Or as a Claude Code plugin, since this repo is also its own marketplace:
+
+```
+/plugin marketplace add shwetankg07/writing-resumes
+/plugin install writing-resumes@writing-resumes
+```
 
 ## Use
 

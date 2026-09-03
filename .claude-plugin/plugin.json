@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-plugin-manifest.json",
+  "name": "writing-resumes",
+  "description": "Write resumes that contain no invented facts. Every claim traces to a profile file, and a checker fails the draft when one doesn't.",
+  "version": "1.0.0",
+  "author": {
+    "name": "shwetankg07",
+    "url": "https://github.com/shwetankg07"
+  },
+  "homepage": "https://github.com/shwetankg07/writing-resumes",
+  "repository": "https://github.com/shwetankg07/writing-resumes",
+  "license": "MIT",
+  "keywords": [
+    "resume",
+    "cv",
+    "ats",
+    "job-search",
+    "writing"
+  ],
+  "skills": [
+    "./"
+  ]
+}
