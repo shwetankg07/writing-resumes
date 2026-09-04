@@ -3,8 +3,20 @@
 % Engines, in order of preference: tectonic > xelatex > pdflatex.
 % ATS: single column, no tabular layout, dates in the text flow, real text layer.
 \documentclass[10pt,a4paper]{article}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
+% Ligatures must not reach the text layer. By default "profit" is encoded as a
+% single U+FB01 glyph and reads back as "pro<fi>t", so an ATS searching for
+% "profit", "fitness", "workflow" or "certified" finds nothing. Both branches
+% below keep those words as plain letters in the extracted text.
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \input{glyphtounicode}
+  \pdfgentounicode=1
+\else
+  \usepackage{fontspec}
+  \defaultfontfeatures{Ligatures=NoCommon}
+\fi
 \usepackage[margin=0.6in]{geometry}
 \usepackage{enumitem}
 \usepackage[hidelinks]{hyperref}

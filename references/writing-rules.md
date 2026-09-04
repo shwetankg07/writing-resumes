@@ -50,6 +50,10 @@ The resume is read by a parser before a human sees it. Non-negotiable:
   installed.
 - Nothing load-bearing in a header or footer; some parsers drop them.
 - Standard fonts. Contact details as plain text, not glyphs.
+- No ligatures in the text layer. LaTeX encodes "profit" as a single glyph by
+  default, so it reads back as "pro<fi>t" and a keyword search for profit,
+  fitness, workflow or certified fails. The shipped template disables them;
+  verify with `pdftotext file.pdf - | grep -i profit`.
 - Wrap a hyphenated domain in `\mbox{}` (LaTeX) or `white-space: nowrap`
   (HTML). If it breaks across lines, extractors drop the hyphen and
   `you.is-a.dev` becomes the dead domain `you.isa.dev`.
