@@ -14,6 +14,7 @@ real number moved to the wrong claim.
 # ponytail: numeric claims + markers only. Prose claims ("led the team") need a
 # human read; add a claim extractor if fabricated prose shows up in practice.
 """
+import os
 import re
 import sys
 
@@ -89,7 +90,7 @@ def check(draft_path, profile_path):
 
 
 def self_test():
-    import tempfile, os
+    import tempfile
 
     d = tempfile.mkdtemp()
     prof = os.path.join(d, "p.yml")
@@ -134,6 +135,9 @@ if __name__ == "__main__":
         sys.exit(0)
     if len(sys.argv) != 3:
         sys.exit(__doc__)
+    for path in sys.argv[1:3]:
+        if not os.path.exists(path):
+            sys.exit(f"error: no such file: {path}")
     found = check(sys.argv[1], sys.argv[2])
     for line_no, why, text in found:
         print(f"{sys.argv[1]}:{line_no}: {why}\n    {text}")
