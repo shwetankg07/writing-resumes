@@ -42,8 +42,23 @@ def strip_html(text):
     return text.replace("&bull;", " ").replace("&amp;", "&")
 
 
+def pdf_text(path):
+    """A PDF is the artifact that actually gets sent, so check it directly."""
+    import shutil, subprocess
+    if not shutil.which("pdftotext"):
+        sys.exit(f"error: {path} is a PDF and pdftotext is not installed.\n"
+                 f"       Install poppler, or check the source file instead.")
+    return subprocess.run(["pdftotext", path, "-"], capture_output=True,
+                          text=True, check=True).stdout
+
+
 def visible_text(path):
-    raw = open(path, encoding="utf-8").read()
+    if path.endswith(".pdf"):
+        return pdf_text(path)
+    try:
+        raw = open(path, encoding="utf-8").read()
+    except UnicodeDecodeError:
+        sys.exit(f"error: {path} is not text. Pass the source file or a PDF.")
     if path.endswith((".tex", ".latex")):
         return strip_latex(raw)
     if path.endswith((".html", ".htm")):
@@ -73,7 +88,7 @@ def check(draft_path, profile_path):
     problems = []
 
     if draft_path.endswith((".tex", ".latex")):
-        raw = open(draft_path, encoding="utf-8").read()
+        raw = open(draft_path, encoding="utf-8").read()  # raw: strip_latex drops \item
         for n, line in enumerate(raw.splitlines(), 1):
             if ITEM_BRACKET.search(line):
                 problems.append((n, r"\item [ ... ] is read as the optional label: "
@@ -122,6 +137,16 @@ def self_test():
     got = check(html, prof)
     assert len(got) == 1 and "ASK" in got[0][1], got  # css ignored, marker caught
 
+    # a non-text file must report, not raise UnicodeDecodeError
+    binary = os.path.join(d, "b.bin")
+    open(binary, "wb").write(b"\xe4\xf0\x01not text")
+    try:
+        check(binary, prof)
+    except SystemExit as e:
+        assert "not text" in str(e), e
+    else:
+        raise AssertionError("binary input must exit with a message")
+
     # \item [ swallows the marker before it reaches the PDF
     eaten = os.path.join(d, "e.tex")
     open(eaten, "w").write("\\begin{document}\n\\item [ASK: how many?]\n")
@@ -136,8 +161,11 @@ if __name__ == "__main__":
     if len(sys.argv) != 3:
         sys.exit(__doc__)
     for path in sys.argv[1:3]:
-        if not os.path.exists(path):
-            sys.exit(f"error: no such file: {path}")
+        if not os.path.isfile(path):
+            sys.exit(f"error: not a file: {path}")
+    if os.path.realpath(sys.argv[1]) == os.path.realpath(sys.argv[2]):
+        sys.exit("error: draft and profile are the same file; the check would "
+                 "pass vacuously.")
     found = check(sys.argv[1], sys.argv[2])
     for line_no, why, text in found:
         print(f"{sys.argv[1]}:{line_no}: {why}\n    {text}")

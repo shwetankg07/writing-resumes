@@ -42,11 +42,15 @@ reordering what is already true. It never adds anything.
 
 ```bash
 python3 check_facts.py resume.tex profile.yml
+python3 check_facts.py resume.pdf profile.yml    # stronger: checks what you send
 ```
 
 It fails on any number in the draft that isn't in your profile, and on any
-`[ASK:]` marker you haven't answered yet. Stdlib only, no dependencies.
-`--self-test` runs its own tests.
+`[ASK:]` marker you haven't answered yet. Stdlib only; reading a PDF uses
+`pdftotext` if you have it. `--self-test` runs its own tests.
+
+Prefer checking the PDF. A marker can pass every check in the source and still
+vanish during rendering, which is exactly the bug that shipped here once.
 
 What it proves is that a number exists somewhere in your profile, not that it
 sits in the right claim. That catches invented magnitudes, which is the failure
